@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+.login-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12%;
+  font-family: 'Outfit', sans-serif;
+  background-color: #0b0c10;
+  /* Add fall-back gradient background in case 3D model takes time to load */
+  background: radial-gradient(circle at center, #1a1b26 0%, #0b0c10 100%);
+}
+
+.spline-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.glass-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  perspective: 1200px; /* Enable 3D perspective */
+}
+
+.glass-card {
+  background: rgba(18, 20, 30, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 45px 40px;
+  color: white;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: floatCard 8s ease-in-out infinite;
+}
+
+.glass-card:hover {
+  transform: translateZ(30px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 45px 90px rgba(0, 0, 0, 0.65), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+  transform: translateZ(40px);
+}
+
+.title3d {
+  font-size: 46px;
+  font-weight: 800;
+  margin-bottom: 5px;
+  color: #fff;
+  filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.4));
+  letter-spacing: -1px;
+}
+
+.title3d .highlight {
+  background: linear-gradient(135deg, #7c9cf9 0%, #a272eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.subtitle {
+  color: #adb5bd;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 59, 48, 0.15);
+  border-left: 4px solid #ff3b30;
+  color: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  transform: translateZ(30px);
+  backdrop-filter: blur(10px);
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transform: translateZ(35px);
+}
+
+.glass-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 15px 22px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.glass-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  transition: all 0.6s ease;
+}
+
+.glass-btn:hover::before {
+  left: 200%;
+}
+
+.glass-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.google-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) translateZ(15px);
+  box-shadow: 0 10px 30px rgba(124, 156, 249, 0.3);
+}
+
+.github-btn:hover:not(:disabled) {
+  background: rgba(36, 41, 46, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) translateZ(15px);
+  box-shadow: 0 10px 30px rgba(36, 41, 46, 0.6);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 35px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 25px;
+  transform: translateZ(25px);
+}
+
+.secured-text {
+  font-size: 13px;
+  color: #6c757d;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .login-wrapper {
+    padding-right: 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-card {
+    padding: 35px 25px;
+    border-radius: 16px;
+    margin: 20px;
+  }
+  
+  .title3d {
+    font-size: 38px;
+  }
+}
